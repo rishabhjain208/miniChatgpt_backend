@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: my-app-container
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb+srv://niajp2950:admin123@cluster0.iq4ers6.mongodb.net/Assignment
+      - JWT_SECRET=Riyajain_Assignment_PowerAI
+      - PORT=8000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo-container
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
